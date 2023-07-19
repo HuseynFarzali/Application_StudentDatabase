@@ -27,7 +27,7 @@ namespace Application_StudentDatabase.Services
         {
             var students = studentService.GetStudents();
 
-            if (students.DefaultIfEmpty() == default(StudentService))
+            if (students.Count == 0)
             {
                 Console.WriteLine("There is no any student in the database.");
                 return;
@@ -51,6 +51,8 @@ namespace Application_StudentDatabase.Services
 
                 Console.Write("Enter the student grade: ");
                 decimal grade = decimal.Parse(Console.ReadLine());
+
+                studentService.AddStudent(name, surname, grade);
             }
             catch (FormatException fExc)
             {
